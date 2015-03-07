@@ -35,13 +35,4 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-#  config.action_controller.asset_host = "https://#{Figaro.env.FOG_DIRECTORY}.s3.amazonaws.com"
-#
-#  config.fog_credentials = {
-#    :provider               => 'AWS',
-#    :aws_access_key_id      => Figaro.env['AWS_ACCESS_KEY_ID'],
-#    :aws_secret_access_key  => Figaro.env['AWS_SECRET_ACCESS_KEY'],
-#    :bucket_name            => Figaro.env['AWS_BUCKET_NAME'],
-#  }
-#  config.fog_directory  = Figaro.env['FOG_DIRECTORY']
 end

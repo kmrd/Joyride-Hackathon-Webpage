@@ -50,10 +50,9 @@ Rails.application.configure do
   config.fog_credentials = {
     :provider               => 'AWS',
     :aws_access_key_id      => Figaro.env.AWS_ACCESS_KEY_ID,
-    :aws_secret_access_key  => Figaro.env.AWS_SECRET_ACCESS_KEY,
-    :bucket_name            => Figaro.env.AWS_BUCKET_NAME,
+    :aws_secret_access_key  => Figaro.env.AWS_SECRET_ACCESS_KEY
   }
-  config.fog_directory  = Figaro.env.FOG_DIRECTORY
+  config.fog_directory  = Figaro.env.AWS_BUCKET_NAME
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
