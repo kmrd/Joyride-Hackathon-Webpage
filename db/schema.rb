@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150307201741) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "device_id"
-    t.text     "state"
+    t.string   "state"
   end
 
   add_index "coords", ["device_id"], name: "index_coords_on_device_id", using: :btree
