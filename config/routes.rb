@@ -22,10 +22,15 @@ Rails.application.routes.draw do
 #    end
 #  end 
 
-  get   'dashboard'   => 'dashboard#index'
+  #get   'dashboard'   => 'dashboard#index'
 
-  resources :devices
+  resources :devices do
+    member do
+      get 'alerts'      => 'devices#alerts'
+    end
+  end
 
+  resources :coords
 
   ## omni auth add-on
   #get '/auth/:provider/callback'  => 'sessions#omniauth_endpoint'

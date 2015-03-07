@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui
+//= require gmap
 //= require bootstrap
 // require global
 // require turbolinks

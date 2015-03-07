@@ -1,0 +1,27 @@
+<h1>Listing coords</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coords.each do |coord| %>
+      <tr>
+        <td><%= coord.lat %></td>
+        <td><%= coord.lng %></td>
+        <td><%= link_to 'Show', coord %></td>
+        <td><%= link_to 'Edit', edit_coord_path(coord) %></td>
+        <td><%= link_to 'Destroy', coord, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Coord', new_coord_path %>

@@ -32,5 +32,9 @@
 </div>
 
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+<%# Output any JS that was provided in a view %>
+<%= yield(:js) %>
+
 </body>
 </html>

@@ -2,6 +2,12 @@ class User < ActiveRecord::Base
 
   has_many :devices
 
+  store :meta,
+      accessors: [ :text_notification,
+                   :email_notification
+                 ],
+      coder: JSON
+
 
 #  def fullname
 #    "#{self.firstname} #{self.lastname}"

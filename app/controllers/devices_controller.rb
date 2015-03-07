@@ -1,5 +1,5 @@
 class DevicesController < ApplicationController
-  before_action :set_device, only: [:show, :edit, :update, :destroy]
+  before_action :set_device, only: [:show, :alerts, :edit, :update, :destroy]
   before_action :logged_in_user
 
   # GET /devices
@@ -9,6 +9,9 @@ class DevicesController < ApplicationController
   end
 
   def show
+  end
+
+  def alerts
   end
 
   def new

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307152240) do
+ActiveRecord::Schema.define(version: 20150307201741) do
+
+  create_table "coords", force: true do |t|
+    t.decimal  "lat",        precision: 10, scale: 6
+    t.decimal  "lng",        precision: 10, scale: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "device_id"
+    t.text     "state"
+  end
+
+  add_index "coords", ["device_id"], name: "index_coords_on_device_id", using: :btree
 
   create_table "devices", force: true do |t|
     t.string   "name"
@@ -32,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150307152240) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "meta"
   end
 
 end

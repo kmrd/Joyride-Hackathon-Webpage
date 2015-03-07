@@ -3,3 +3,34 @@
 <%= link_to 'Back', devices_path %>
 
 <h1><%= @device.name %> <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_device_path(@device), class: 'btn btn-primary btn-sm' %></h1>
+
+<%= link_to 'Journies', device_path(@device), class: 'btn btn-primary btn-lg active' %>
+<%= link_to 'Alerts',  alerts_device_path(@device), class: 'btn btn-primary btn-lg' %>
+
+<h3>Last journey</h3>
+<p>Avg Speed <strong><big>12 km/h</big></strong></p>
+<p>Calories burned <strong><big>400 cal</big></strong></p>
+
+<div id="map-container">
+  <div id="map-canvas"></div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+  function localMapChanges()
+  {
+    createMarker(<%= @device.coords.where(state: 'journey').last.lat %>, <%= @device.coords.where(state: 'journey').last.lng %>, map, 'Last Position')
+
+    // make a path with start and end points
+    var lineCoordinates = []
+    <% @device.coords.where(state: 'journey').each do |c| %>
+      createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
+      lineCoordinates.push(new google.maps.LatLng(<%= c.lat %>, <%= c.lng %>))
+    <% end %>
+
+    createPolyline(map, lineCoordinates, lineSymbol);
+  }
+</script>
+<% end %>
