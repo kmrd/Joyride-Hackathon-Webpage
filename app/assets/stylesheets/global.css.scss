@@ -1,0 +1,88 @@
+//
+//
+//  ==========================================================
+//  Table of Contents
+//  ==========================================================
+//  Bootstrap
+//  Fonts
+//  Variables
+//  Bootstrap Overrides
+//  Reusable Components
+//  Page Specific Styles
+//
+//
+//
+
+
+//
+//
+//  ==========================================================
+//  Bootstrap
+//  ==========================================================
+//
+//
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+	background: asset_url('bike.jpg') fixed center center;
+	background-size: cover;
+}
+
+
+//
+//
+//  ==========================================================
+//  Variables
+//  ==========================================================
+//
+//
+$orange : #f2af0e;
+
+//
+//
+//  ==========================================================
+//  Bootstrap Overrides
+//  ==========================================================
+//
+//
+.navbar {
+	background: none;
+	background-color: rgba(0,0,0,.2);
+
+	&.navbar-default {
+		a,  li a {
+			//background: none;
+			color: #fff;
+			&:hover {
+				color: $orange;
+			}
+		}
+	}
+
+	.dropdown-menu {
+		color: #666;
+		background-color: #000;
+		background-color: rgba(0,0,0,.5);
+	}
+
+	border: none;
+
+	.navbar-nav {
+	//	//background: none;
+		//a {
+		//	background-color: #000;
+		//	background-color: rgba(0,0,0,.5)
+		//}
+	}
+}
+
+//
+//
+//  ==========================================================
+//  Page Specific
+//  ==========================================================
+//
+//
+.home {
+}
