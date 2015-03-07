@@ -44,6 +44,8 @@ Rails.application.configure do
   # Set to :debug to see everything in the log.
   config.log_level = :info
 
+  config.action_controller.asset_host = "https://#{Figaro.env.FOG_DIRECTORY}.s3.amazonaws.com"
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
