@@ -47,16 +47,10 @@ Rails.application.configure do
 
   config.action_controller.asset_host = "http://#{Figaro.env.FOG_DIRECTORY}.s3.amazonaws.com"
 
-  config.fog_provider          = 'AWS'
-  config.fog_directory         = Figaro.env.FOG_DIRECTORY
-  config.aws_access_key_id     = Figaro.env.AWS_ACCESS_KEY_ID
-  config.aws_secret_access_key = Figaro.env.AWS_SECRET_ACCESS_KEY
-
   config.fog_credentials = {
     :provider               => 'AWS',
     :aws_access_key_id      => Figaro.env.AWS_ACCESS_KEY_ID,
-    :aws_secret_access_key  => Figaro.env.AWS_SECRET_ACCESS_KEY,
-    #:region                 => 'US Standard' #us-east-1
+    :aws_secret_access_key  => Figaro.env.AWS_SECRET_ACCESS_KEY
   }
   config.fog_directory  = Figaro.env.AWS_BUCKET_NAME
 
