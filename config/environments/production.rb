@@ -27,9 +27,10 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
+  config.assets.enabled = true
   config.assets.digest = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
@@ -44,15 +45,15 @@ Rails.application.configure do
   # Set to :debug to see everything in the log.
   config.log_level = :info
 
-  config.action_controller.asset_host = "https://#{Figaro.env.FOG_DIRECTORY}.s3.amazonaws.com"
+  config.action_controller.asset_host = "http://#{Figaro.env.FOG_DIRECTORY}.s3.amazonaws.com"
 
   config.fog_credentials = {
     :provider               => 'AWS',
-    :aws_access_key_id      => Figaro.env['AWS_ACCESS_KEY_ID'],
-    :aws_secret_access_key  => Figaro.env['AWS_SECRET_ACCESS_KEY'],
-    :bucket_name            => Figaro.env['AWS_BUCKET_NAME'],
+    :aws_access_key_id      => Figaro.env.AWS_ACCESS_KEY_ID,
+    :aws_secret_access_key  => Figaro.env.AWS_SECRET_ACCESS_KEY,
+    :bucket_name            => Figaro.env.AWS_BUCKET_NAME,
   }
-  config.fog_directory  = Figaro.env['FOG_DIRECTORY']
+  config.fog_directory  = Figaro.env.FOG_DIRECTORY
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]

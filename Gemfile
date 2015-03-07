@@ -56,5 +56,6 @@ group :production do
 end
 
 group :development, :test do
-
+#  gem 'fog',                '1.23.0'
+#  gem 'asset_sync'
 end 
