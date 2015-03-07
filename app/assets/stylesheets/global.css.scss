@@ -24,11 +24,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
-	background: asset_url('bike.jpg') fixed center center;
-	background-size: cover;
-}
-
 
 //
 //
@@ -38,6 +33,8 @@ body {
 //
 //
 $orange : #f2af0e;
+$darkorange : #d99d0d;
+$lightorange : #ffd776;
 
 //
 //
@@ -46,9 +43,57 @@ $orange : #f2af0e;
 //  ==========================================================
 //
 //
+body {
+	background: asset_url('bike.jpg') fixed center center;
+	background-size: cover;
+}
+
+a {
+	color: $orange;
+
+	&:hover {
+		color: $darkorange;
+	}
+}
+
+// Ghosting for a button
+.ghost {
+	background: none !important;
+	color: $orange;
+	border-style: dashed;
+
+	&:hover {
+		color: $orange;
+		border-style: solid;
+	}
+}
+
+.btn-primary {
+	background-color: $orange;
+	border-color: $orange;
+
+	&:hover {
+		background-color: $darkorange;
+		border-color: $darkorange;
+	}
+
+}
 .navbar {
 	background: none;
 	background-color: rgba(0,0,0,.2);
+
+	.devices {
+		background-color: $orange;
+		a:hover {
+			color: #000 !important;
+		}
+
+		&.active {
+			a {
+				background-color: $darkorange !important;
+			}
+		}
+	}
 
 	&.navbar-default {
 		a,  li a {

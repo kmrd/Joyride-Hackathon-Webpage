@@ -10,10 +10,8 @@ Rails.application.routes.draw do
 
 
   get    'signup'                          => 'users#new'
-  get    'user/edit'                       => 'users#edit'
-  post   'user/edit'                       => 'users#update'
-  get    'user/settings'                   => 'users#settings'
-  patch  'user/settings'                   => 'users#update_settings'
+  get    'user/settings'                   => 'users#edit',   as: :user_settings
+  patch  'user/settings'                   => 'users#update', as: :user_update
 #  resources :users, except: [:edit] do
 #    member do
 #      get :following, :followers

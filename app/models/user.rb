@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :devices
 
+
 #  def fullname
 #    "#{self.firstname} #{self.lastname}"
 #  end

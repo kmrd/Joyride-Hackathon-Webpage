@@ -5,15 +5,12 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = current_user.devices #Device.all
+    @devices = current_user.devices
   end
 
-  # GET /devices/1
-  # GET /devices/1.json
   def show
   end
 
-  # GET /devices/new
   def new
     @device = Device.new
   end
