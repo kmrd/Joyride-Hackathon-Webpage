@@ -34,6 +34,8 @@ gem 'mysql2', platforms: [:mingw, :mswin]  # gem install mysql2 --platform=ruby 
 
 gem 'bootstrap-sass'
 
+gem 'seed_dump'
+
 #gem 'twilio-ruby' 
 
 
