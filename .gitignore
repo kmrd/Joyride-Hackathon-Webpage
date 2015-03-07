@@ -28,3 +28,5 @@ _Obs
 # Not storing a database file
 # Create a local one with database.example.yml
 /config/database.yml
+# Ignore application configuration
+/config/application.yml

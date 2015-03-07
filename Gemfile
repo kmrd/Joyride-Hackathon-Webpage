@@ -16,12 +16,23 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+
+
+gem 'figaro'
+
+
+
+gem 'pg', '0.17.1', platforms: [:ruby]
+gem 'mysql2', platforms: [:mingw, :mswin]  # gem install mysql2 --platform=ruby -- '--with-mysql-lib="C:\xampp\mysql-connector-c-6.1.5-win32\lib" --with-mysql-include="C:\xampp\mysql-connector-c-6.1.5-win32\include" --with-mysql-dir="C:\xampp\mysql-connector-c-6.1.5-win32"'
+
+gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -37,3 +48,13 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+group :production do
+  gem 'rails_12factor',     '0.0.2'
+  gem 'fog',                '1.23.0'
+  gem 'asset_sync'
+end
+
+group :development, :test do
+  
+end 
