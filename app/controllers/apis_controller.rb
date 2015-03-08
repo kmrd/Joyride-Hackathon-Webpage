@@ -87,11 +87,11 @@ class ApisController < ApplicationController
             url = "https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en"
             #url = Googl.shorten("https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en")
 
-            $twilio_client.account.messages.create(
-                :from => $twilio_phone_number,
-                :to => to_number,
-                :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url}"
-              )
+#            $twilio_client.account.messages.create(
+#                :from => $twilio_phone_number,
+#                :to => to_number,
+#                :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url}"
+#              )
 
           end
 
