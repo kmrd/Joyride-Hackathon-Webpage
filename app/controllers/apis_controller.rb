@@ -53,8 +53,15 @@ class ApisController < ApplicationController
   def go
     #joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/1425777628
     #/api/:device_id/:state/:lat/:long/:time/
-    
 
+
+    render text: 'good'
+    return
+  end
+
+  def clean
+    Coords.all.destroy
+    
     render text: 'good'
     return
   end
