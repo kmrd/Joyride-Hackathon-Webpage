@@ -9,7 +9,9 @@
 
 <h3>Last alert</h3>
 <% unless @device.coords.where(state: 'alert').empty? %>
-  <p><strong><big><%= Time.at( @device.coords.where(state: 'alert').last.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") unless @device.coords.where(state: 'alert').last.epoch.nil?  %></big></strong></p>
+  <% epoch = @device.coords.where(state: 'alert').last.epoch %>
+  <!-- <p><strong><big><%= Time.at( @device.coords.where(state: 'alert').last.epoch ).strftime("%B %e, %Y at %l:%M %p") unless @device.coords.where(state: 'alert').last.epoch.nil?  %></big></strong></p> -->
+  <p><strong><big><%= time_ago_in_words(Time.at(epoch)) + " ago" unless epoch.nil? %></big></strong></p>
 <% end %>
 
 <div id="map-container">
@@ -18,8 +20,8 @@
 
 <h3>Alert History</h3>
 <ul>
-  <% @device.coords.where(state: 'alert').each do |c| %>
-    <li>Time: <%= c.epoch.nil? ? '--' : Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") %></li>
+  <% @device.coords.where(state: 'alert').reverse_each do |c| %>
+    <li><%= c.epoch.nil? ? '--' : Time.at( c.epoch ).strftime("%B %e, %Y at %l:%M %p") %></li>
   <% end %>
 </ul>
 

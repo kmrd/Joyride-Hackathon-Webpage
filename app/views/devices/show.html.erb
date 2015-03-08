@@ -17,7 +17,7 @@
 
 <h3>Journey History</h3>
 <ul>
-  <% @device.coords.where(state: 'journey').each do |c| %>
+  <% @device.coords.where(state: 'journey').reverse_each do |c| %>
     <li>Time: <%= c.epoch.nil? ? '--' : Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") %></li>
   <% end %>
 </ul>

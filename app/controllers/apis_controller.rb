@@ -47,7 +47,7 @@ class ApisController < ApplicationController
 
       end
     end
-
+    render text: 'ok' and return
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 
@@ -56,8 +56,8 @@ class ApisController < ApplicationController
     # Test coordinates
     # Mars building: 43.658010 -79.377507
     # 
-    lat = ('43.658010'.to_f + 90) * 1000000.to_f
-    lng = ('-79.377507'.to_f + 180) * 1000000.to_f
+    lat = ('43.658010'.to_f + 90.to_f) * 1000000.to_f
+    lng = ('-79.377507'.to_f + 180.to_f) * 1000000.to_f
 
     lat = lat.to_i
     lng = lng.to_i
@@ -69,9 +69,9 @@ class ApisController < ApplicationController
     #
     url = "http://joyride-hackathon.herokuapp.com/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
     #url = "http://localhost:3000/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
-    response = HTTParty.get(url)
+    response = HTTParty.get(url) unless Rails.env.development?
 
-    render text: "url:  #{url} <br />response: #{response.body}"
+    render text: "url:  #{url}"#{}" <br />response: #{response.body}"
     return
   end
 
