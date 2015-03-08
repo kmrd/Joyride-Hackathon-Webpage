@@ -55,8 +55,11 @@ class ApisController < ApplicationController
     # Test coordinates
     # Mars building: 43.658010 -79.377507
     # 
-    lat = ('43.658010'.to_f + 90) * 1000000
-    lng = ('-79.377507'.to_f + 180) * 1000000
+    lat = ('43.658010'.to_f + 90) * 1000000.to_f
+    lng = ('-79.377507'.to_f + 180) * 1000000.to_f
+
+    lat = lat.to_i
+    lat = lnt.to_i
 
     #
     # Calls:
