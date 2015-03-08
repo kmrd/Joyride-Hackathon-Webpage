@@ -36,7 +36,7 @@ gem 'bootstrap-sass'
 
 gem 'seed_dump'
 
-#gem 'twilio-ruby' 
+gem 'twilio-ruby' 
 
 
 # Use ActiveModel has_secure_password

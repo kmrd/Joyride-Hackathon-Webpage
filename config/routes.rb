@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   resources :coords
 
+  #resources :apis
+  get    'api/:device_id/:state/:lat/:lng/:time' => 'apis#report', as: :api
+
   ## omni auth add-on
   #get '/auth/:provider/callback'  => 'sessions#omniauth_endpoint'
   #get '/login/facebook'           => 'sessions#facebook', as: :facebook_login

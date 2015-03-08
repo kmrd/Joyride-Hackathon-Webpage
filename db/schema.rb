@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307201741) do
+ActiveRecord::Schema.define(version: 20150308012840) do
 
   create_table "coords", force: true do |t|
     t.decimal  "lat",        precision: 10, scale: 6
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150307201741) do
     t.datetime "updated_at"
     t.integer  "device_id"
     t.string   "state"
+    t.integer  "epoch"
   end
 
   add_index "coords", ["device_id"], name: "index_coords_on_device_id", using: :btree

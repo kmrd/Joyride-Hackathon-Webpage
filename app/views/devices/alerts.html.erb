@@ -8,7 +8,7 @@
 <%= link_to 'Alerts',  alerts_device_path(@device), class: 'btn btn-primary btn-lg active' %>
 
 <h3>Last alert</h3>
-<p>Time: <strong><big>5:44pm</big></strong></p>
+<p><strong><big><%= Time.at( @device.coords.where(state: 'alert').last.epoch ).to_datetime.strftime("%B %e, %Y at %I:%M %p") %></big></strong></p>
 
 <div id="map-container">
   <div id="map-canvas"></div>
@@ -20,16 +20,9 @@
 <script>
   function localMapChanges()
   {
-    createMarker(<%= @device.coords.where(state: 'alert').last.lat %>, <%= @device.coords.where(state: 'alert').last.lng %>, map, 'Last Position')
-
-    // make a path with start and end points
-    var lineCoordinates = []
     <% @device.coords.where(state: 'alert').each do |c| %>
       createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
-      //lineCoordinates.push(new google.maps.LatLng(<%= c.lat %>, <%= c.lng %>))
     <% end %>
-
-    //createPolyline(map, lineCoordinates, lineSymbol);
   }
 </script>
 <% end %>

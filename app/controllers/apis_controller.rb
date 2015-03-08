@@ -1,0 +1,51 @@
+require 'twilio-ruby'
+
+class ApisController < ApplicationController
+#  before_action :set_api, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
+
+
+  def report
+    # API call: /api/:device_id/:state/:lat/:long/:time/
+    if Device.exists?(params[:device_id])
+      @device = Device.find(params[:device_id])
+      if [1,2].map{ |i| i.to_s }.include?(params[:state])
+        case params[:state]
+          when 1.to_s
+            state = 'journey'
+          when 2.to_s
+            state = 'alert'
+        end
+
+        # store the stuff
+        lat = (params[:lat].to_f / 1000000.to_f) - 90
+        lng = (params[:lng].to_f / 1000000.to_f) - 180
+
+        epoch = params[:time]
+
+        c = Coord.new(device: @device, state: state, lat: lat, lng: lng, epoch: epoch)
+        c.save
+
+        # if this was an alert, send a email or text
+        unless @device.user.text_notification.blank?
+          # send a message to Twilio (with a google map link?)
+          $twilio_client.account.messages.create(
+              :from => $twilio_phone_number,
+              :to => '+14164001810',
+              :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")}"
+            )
+
+        end
+
+      end
+    end
+
+    render :nothing => true, :status => 200, :content_type => 'text/html'
+  end
+
+  private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def api_params
+      params[:api]
+    end
+end

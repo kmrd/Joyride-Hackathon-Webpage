@@ -1,5 +1,5 @@
 class Coord < ActiveRecord::Base
-  has_one :device
+  belongs_to :device
 
   
 end
