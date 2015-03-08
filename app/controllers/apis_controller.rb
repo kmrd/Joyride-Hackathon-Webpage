@@ -60,8 +60,8 @@ class ApisController < ApplicationController
   end
 
   def clean
-    Coords.all.destroy
-    
+    Coord.all.destroy
+
     render text: 'good'
     return
   end
