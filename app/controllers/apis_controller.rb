@@ -52,8 +52,9 @@ class ApisController < ApplicationController
 
   def go
     #joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/1425777628
-    #/api/:device_id/:state/:lat/:long/:time/
-
+    #device_id#/api/:device_id/:state/:lat/:long/:time/
+    #:report { :device_id#/api/:device_id/:state/:lat/:long/:time/
+    response = HTTParty.get("http://joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/#{Time.now.to_i}")
 
     render text: 'good'
     return
