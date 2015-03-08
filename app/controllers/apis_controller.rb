@@ -54,10 +54,11 @@ class ApisController < ApplicationController
   def go
     #
     # Test coordinates
-    # Mars building: 43.658010 -79.377507
+    # Mars building: 43.6598912, -79.3886251
+    # 43.658010 -79.377507
     # 
-    lat = ('43.658010'.to_f + 90.to_f) * 1000000.to_f
-    lng = ('-79.377507'.to_f + 180.to_f) * 1000000.to_f
+    lat = ('43.6598912'.to_f + 90.to_f) * 1000000.to_f
+    lng = ('-79.3886251'.to_f + 180.to_f) * 1000000.to_f
 
     lat = lat.to_i
     lng = lng.to_i

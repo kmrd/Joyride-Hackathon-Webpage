@@ -27,6 +27,8 @@
 <script>
   function localMapChanges()
   {
+    map.setZoom(14);
+
     //createMarker(<%= @device.coords.where(state: 'journey').last.lat %>, <%= @device.coords.where(state: 'journey').last.lng %>, map, 'Last Position')
     createCustomMarker(<%= @device.coords.where(state: 'journey').last.lat %>, <%= @device.coords.where(state: 'journey').last.lng %>, map, 'Last Position')
 

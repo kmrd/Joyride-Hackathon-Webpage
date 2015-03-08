@@ -8,7 +8,7 @@ function initialize() {
         
   var mapOptions = {
           center: new google.maps.LatLng(43.659891, -79.388625),
-          zoom: 14,
+          zoom: 16,
           mapTypeId: google.maps.MapTypeId.NORMAL,
           panControl: true,
           scaleControl: false,

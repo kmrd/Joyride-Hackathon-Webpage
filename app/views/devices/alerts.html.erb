@@ -31,10 +31,14 @@
 <script>
   function localMapChanges()
   {
-    //createImage()
+    <% c = @device.coords.where(state: 'alert').last %>
+    createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, "Time: <%= Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") unless c.epoch.nil? %>")
+
+
+    // Not using the below since we are only interested in the last alert
     <% @device.coords.where(state: 'alert').each do |c| %>
       //createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
-      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, "Time: <%= Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") unless c.epoch.nil? %>")
+      // createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, "Time: <%= Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") unless c.epoch.nil? %>")
     <% end %>
   }
 </script>
