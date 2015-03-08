@@ -9,7 +9,7 @@
 
 <h3>Last alert</h3>
 <% unless @device.coords.where(state: 'alert').empty? %>
-  <p><strong><big><%= Time.at( @device.coords.where(state: 'alert').last.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p").in_time_zone() unless @device.coords.where(state: 'alert').last.epoch.nil?  %></big></strong></p>
+  <p><strong><big><%= Time.at( @device.coords.where(state: 'alert').last.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") unless @device.coords.where(state: 'alert').last.epoch.nil?  %></big></strong></p>
 <% end %>
 
 <div id="map-container">
