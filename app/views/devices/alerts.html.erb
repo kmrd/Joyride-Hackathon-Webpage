@@ -19,7 +19,7 @@
 <h3>Alert History</h3>
 <ul>
   <% @device.coords.where(state: 'alert').each do |c| %>
-    <li>Time: <%= c.epoch.nil? ? '--' : Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %I:%M %p") %></li>
+    <li>Time: <%= c.epoch.nil? ? '--' : Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") %></li>
   <% end %>
 </ul>
 
@@ -32,7 +32,7 @@
     <% @device.coords.where(state: 'alert').each do |c| %>
       // createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
       createImage()
-      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, "Time: #{Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %I:%M %p")}")
+      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, "Time: #{Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p")}")
     <% end %>
   }
 </script>
