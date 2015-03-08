@@ -24,7 +24,7 @@ class ApisController < ApplicationController
         epoch = params[:time]
 
         c = Coord.new(device: @device, state: state, lat: lat, lng: lng, epoch: epoch)
-        c.save if Rails.env.production?
+        c.save# if Rails.env.production?
 
         # if this was an alert, send a email or text
         unless @device.user.text_notification.blank?
@@ -68,6 +68,7 @@ class ApisController < ApplicationController
     # /api/<:device_id>/<:state>/<:lat>/<:long>/<:time>/
     #
     url = "http://joyride-hackathon.herokuapp.com/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
+    #url = "http://localhost:3000/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
     response = HTTParty.get(url)
 
     render text: "url:  #{url} <br />response: #{response.body}"
