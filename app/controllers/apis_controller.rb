@@ -60,7 +60,7 @@ class ApisController < ApplicationController
   end
 
   def clean
-    Coord.all.destroy
+    Coord.destroy_all(state: 'alert')
 
     render text: 'good'
     return
