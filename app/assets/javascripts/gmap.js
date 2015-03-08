@@ -155,7 +155,7 @@ function createImage(url){
   return image;
 }
 
-function createCustomMarker(lat, lng, map,title){
+function createCustomMarker(lat, lng, map, title){
   var coords = new google.maps.LatLng(lat, lng);
   marker = new google.maps.Marker({
     position: coords,

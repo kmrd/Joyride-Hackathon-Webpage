@@ -31,7 +31,8 @@ class ApisController < ApplicationController
           # send a message to Twilio (with a google map link?)
           to_number = Rails.env.production? ? '+14164001810' : '+14168418601'
 
-          url = Googl.shorten("https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en")
+          url = "https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en"
+          #url = Googl.shorten("https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en")
 
 #          $twilio_client.account.messages.create(
 #              :from => $twilio_phone_number,

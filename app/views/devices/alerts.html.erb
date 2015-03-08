@@ -29,10 +29,10 @@
 <script>
   function localMapChanges()
   {
+    //createImage()
     <% @device.coords.where(state: 'alert').each do |c| %>
-      // createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
-      createImage()
-      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, "Time: #{Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p")}")
+      //createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
+      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, "Time: <%= Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %l:%M %p") unless c.epoch.nil? %>")
     <% end %>
   }
 </script>
