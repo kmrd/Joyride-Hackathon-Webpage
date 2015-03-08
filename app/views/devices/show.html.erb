@@ -15,6 +15,12 @@
   <div id="map-canvas"></div>
 </div>
 
+<h3>Journey History</h3>
+<ul>
+  <% @device.coords.where(state: 'journey').reverse_each do |c| %>
+    <li>Time: <%= c.epoch.nil? ? '--' : Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %I:%M %p") %></li>
+  <% end %>
+</ul>
 
 
 <% content_for :js do %>
