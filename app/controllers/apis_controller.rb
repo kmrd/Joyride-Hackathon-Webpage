@@ -24,16 +24,23 @@ class ApisController < ApplicationController
         epoch = params[:time]
 
         c = Coord.new(device: @device, state: state, lat: lat, lng: lng, epoch: epoch)
-        c.save
+        c.save if Rails.env.production?
 
         # if this was an alert, send a email or text
         unless @device.user.text_notification.blank?
           # send a message to Twilio (with a google map link?)
+          to_number = Rails.env.production? ? '+14164001810' : '+14168418601'
+
+          url = Googl.shorten("https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en")
+
           $twilio_client.account.messages.create(
               :from => $twilio_phone_number,
-              :to => '+14164001810',
-              :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")}"
+              :to => to_number,
+              :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url.short_url}"
             )
+
+            #https://www.google.ca/maps/search/43.6598912,+-79.3886251/@43.6598912,-79.3886251,17z/data=!3m1!4b1?hl=en
+            #https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en
 
         end
 

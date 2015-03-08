@@ -21,13 +21,15 @@
 <script>
   function localMapChanges()
   {
-    createMarker(<%= @device.coords.where(state: 'journey').last.lat %>, <%= @device.coords.where(state: 'journey').last.lng %>, map, 'Last Position')
+    //createMarker(<%= @device.coords.where(state: 'journey').last.lat %>, <%= @device.coords.where(state: 'journey').last.lng %>, map, 'Last Position')
+    createCustomMarker(<%= @device.coords.where(state: 'journey').last.lat %>, <%= @device.coords.where(state: 'journey').last.lng %>, map, 'Last Position')
 
     // make a path with start and end points
     var lineCoordinates = []
     <% @device.coords.where(state: 'journey').each do |c| %>
-      createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
+      //createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
       lineCoordinates.push(new google.maps.LatLng(<%= c.lat %>, <%= c.lng %>))
+      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
     <% end %>
 
     createPolyline(map, lineCoordinates, lineSymbol);

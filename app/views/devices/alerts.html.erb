@@ -21,7 +21,9 @@
   function localMapChanges()
   {
     <% @device.coords.where(state: 'alert').each do |c| %>
-      createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
+      // createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
+      createImage()
+      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
     <% end %>
   }
 </script>
