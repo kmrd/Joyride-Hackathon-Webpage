@@ -18,11 +18,11 @@ class ApisController < ApplicationController
     # Mars building: 43.6598912, -79.3886251
     # 43.658010 -79.377507
     # 
-    lat = ('43.6598912'.to_f + 90.to_f) * 1000000.to_f
-    lng = ('-79.3886251'.to_f + 180.to_f) * 1000000.to_f
+    lat = '43.6598912'
+    lng = '-79.3886251'
 
-    lat = lat.to_i
-    lng = lng.to_i
+    lat_str = ( (lat.to_f + 90.to_f) * 1000000.to_f ).to_i
+    lng_str = ( (lng.to_f + 180.to_f) * 1000000.to_f ).to_i
 
     #
     # Calls:
@@ -36,7 +36,7 @@ class ApisController < ApplicationController
     #render text: "url:  #{url}"#{}" <br />response: #{response.body}"
     #return
 
-    alert(1, 2, lat, lng, Time.now.to_i)
+    alert(1, 2, lat_str, lng_str, Time.now.to_i)
 
     render text: 'ok'
     return
@@ -58,11 +58,11 @@ class ApisController < ApplicationController
     def alert(device_id, state_code, lat_str, lng_str, time)
       if Device.exists?(device_id)
         @device = Device.find(device_id)
-        if [1,2].map{ |i| i.to_s }.include?(state_code.to_s)
-          case state_code
-            when 1
+        if [1,2].map{|i| i.to_s }.include?(state_code.to_s)
+          case state_code.to_s
+            when 1.to_s
               state = 'journey'
-            when 2
+            when 2.to_s
               state = 'alert'
           end
 
@@ -85,11 +85,11 @@ class ApisController < ApplicationController
             url = "https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en"
             #url = Googl.shorten("https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en")
 
-            $twilio_client.account.messages.create(
-                :from => $twilio_phone_number,
-                :to => to_number,
-                :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url}"
-              )
+            #$twilio_client.account.messages.create(
+            #    :from => $twilio_phone_number,
+            #    :to => to_number,
+            #    :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url}"
+            #  )
 
           end
 
