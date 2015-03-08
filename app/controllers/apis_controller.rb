@@ -9,7 +9,9 @@ class ApisController < ApplicationController
     # API call: /api/:device_id/:state/:lat/:long/:time/
     alert(params[:device_id], params[:state], params[:lat], params[:lng], params[:time])
     
-    render :nothing => true, :status => 200, :content_type => 'text/html'
+    #render :nothing => true, :status => 200, :content_type => 'text/html'
+    render text: 'ok'
+    return
   end
 
   def go
