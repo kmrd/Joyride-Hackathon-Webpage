@@ -7,47 +7,8 @@ class ApisController < ApplicationController
 
   def report
     # API call: /api/:device_id/:state/:lat/:long/:time/
-    if Device.exists?(params[:device_id])
-      @device = Device.find(params[:device_id])
-      if [1,2].map{ |i| i.to_s }.include?(params[:state])
-        case params[:state]
-          when 1.to_s
-            state = 'journey'
-          when 2.to_s
-            state = 'alert'
-        end
-
-        # store the stuff
-        lat = (params[:lat].to_f / 1000000.to_f) - 90
-        lng = (params[:lng].to_f / 1000000.to_f) - 180
-
-        epoch = params[:time]
-
-        c = Coord.new(device: @device, state: state, lat: lat, lng: lng, epoch: epoch)
-        c.save# if Rails.env.production?
-
-        # if this was an alert, send a email or text
-        unless @device.user.text_notification.blank?
-          # send a message to Twilio (with a google map link?)
-          to_number = Rails.env.production? ? '+14164001810' : '+14168418601'
-
-          url = "https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en"
-          #url = Googl.shorten("https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en")
-
-#          $twilio_client.account.messages.create(
-#              :from => $twilio_phone_number,
-#              :to => to_number,
-#              :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url.short_url}"
-#            )
-
-            #https://www.google.ca/maps/search/43.6598912,+-79.3886251/@43.6598912,-79.3886251,17z/data=!3m1!4b1?hl=en
-            #https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en
-
-        end
-
-      end
-    end
-    render text: 'ok' and return
+    alert(params[:device_id], params[:state], params[:lat], params[:lng], params[:time])
+    
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 
@@ -68,11 +29,16 @@ class ApisController < ApplicationController
     # http://joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/1425777628
     # /api/<:device_id>/<:state>/<:lat>/<:long>/<:time>/
     #
-    url = "http://joyride-hackathon.herokuapp.com/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
+    #url = "http://joyride-hackathon.herokuapp.com/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
     #url = "http://localhost:3000/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
-    response = HTTParty.get(url) unless Rails.env.development?
+    #response = HTTParty.get(url) unless Rails.env.development?
 
-    render text: "url:  #{url}"#{}" <br />response: #{response.body}"
+    #render text: "url:  #{url}"#{}" <br />response: #{response.body}"
+    #return
+
+    alert(1, 2, lat, lng, Time.now.to_i)
+
+    render text: 'ok'
     return
   end
 
@@ -87,5 +53,47 @@ class ApisController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def api_params
       params[:api]
+    end
+
+    def alert(device_id, state_code, lat_str, lng_str, time)
+      if Device.exists?(device_id)
+        @device = Device.find(device_id)
+        if [1,2].map{ |i| i.to_s }.include?(state_code.to_s)
+          case state_code
+            when 1
+              state = 'journey'
+            when 2
+              state = 'alert'
+          end
+
+          # store the stuff
+          lat = (lat_str.to_f / 1000000.to_f) - 90
+          lng = (lng_str.to_f / 1000000.to_f) - 180
+
+          epoch = time
+
+          c = Coord.new(device: @device, state: state, lat: lat, lng: lng, epoch: epoch)
+          c.save
+
+          # if this was an alert, send a email or text
+          unless @device.user.text_notification.blank?
+            # send a message to Twilio (with a google map link?)
+            to_number = Rails.env.production? ? '+14164001810' : '+14168418601'
+
+            #https://www.google.ca/maps/search/43.6598912,+-79.3886251/@43.6598912,-79.3886251,17z/data=!3m1!4b1?hl=en
+            #https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en
+            url = "https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en"
+            #url = Googl.shorten("https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en")
+
+            #$twilio_client.account.messages.create(
+            #    :from => $twilio_phone_number,
+            #    :to => to_number,
+            #    :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url}"
+            #  )
+
+          end
+
+        end
+      end
     end
 end
