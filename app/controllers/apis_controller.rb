@@ -50,6 +50,15 @@ class ApisController < ApplicationController
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 
+  def go
+    #joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/1425777628
+    #/api/:device_id/:state/:lat/:long/:time/
+    
+
+    render text: 'good'
+    return
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def api_params

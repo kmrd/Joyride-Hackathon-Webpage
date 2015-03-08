@@ -35,7 +35,7 @@
     <% @device.coords.where(state: 'journey').each do |c| %>
       //createMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
       lineCoordinates.push(new google.maps.LatLng(<%= c.lat %>, <%= c.lng %>))
-      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, 'Time:')
+      createCustomMarker(<%= c.lat %>, <%= c.lng %>, map, "Time: #{Time.at( c.epoch ).to_datetime.strftime("%B %e, %Y at %I:%M %p")}")
     <% end %>
 
     createPolyline(map, lineCoordinates, lineSymbol);

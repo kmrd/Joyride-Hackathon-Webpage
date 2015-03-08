@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   #resources :apis
   get    'api/:device_id/:state/:lat/:lng/:time' => 'apis#report', as: :api
+  get    'api/go'    => 'apis#go'
 
   ## omni auth add-on
   #get '/auth/:provider/callback'  => 'sessions#omniauth_endpoint'
