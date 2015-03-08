@@ -18,7 +18,7 @@ class ApisController < ApplicationController
     #
     # Test coordinates
     # Mars building: 43.6598912, -79.3886251
-    # 43.658010 -79.377507
+    # Riverdale: 43.658010 -79.377507
     # 
     lat = '43.6598912'
     lng = '-79.3886251'
@@ -26,17 +26,22 @@ class ApisController < ApplicationController
     lat_str = ( (lat.to_f + 90.to_f) * 1000000.to_f ).to_i
     lng_str = ( (lng.to_f + 180.to_f) * 1000000.to_f ).to_i
 
-    #
-    # Calls:
-    # http://joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/1425777628
-    # /api/<:device_id>/<:state>/<:lat>/<:long>/<:time>/
-    #
-    #url = "http://joyride-hackathon.herokuapp.com/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
-    #url = "http://localhost:3000/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
-    #response = HTTParty.get(url) unless Rails.env.development?
+    alert(1, 2, lat_str, lng_str, Time.now.to_i)
 
-    #render text: "url:  #{url}"#{}" <br />response: #{response.body}"
-    #return
+    render text: 'ok'
+    return
+  end
+
+  def goriver
+    #
+    # Test coordinates
+    # Riverdale: 43.659891 -79.358625
+    # 
+    lat = '43.659891'
+    lng = '-79.358625'
+
+    lat_str = ( (lat.to_f + 90.to_f) * 1000000.to_f ).to_i
+    lng_str = ( (lng.to_f + 180.to_f) * 1000000.to_f ).to_i
 
     alert(1, 2, lat_str, lng_str, Time.now.to_i)
 
