@@ -33,11 +33,11 @@ class ApisController < ApplicationController
 
           url = Googl.shorten("https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en")
 
-          $twilio_client.account.messages.create(
-              :from => $twilio_phone_number,
-              :to => to_number,
-              :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url.short_url}"
-            )
+#          $twilio_client.account.messages.create(
+#              :from => $twilio_phone_number,
+#              :to => to_number,
+#              :body => "Your Joyride has detected unexpected movement. #{Time.now.strftime("%I:%M %P")} \n #{url.short_url}"
+#            )
 
             #https://www.google.ca/maps/search/43.6598912,+-79.3886251/@43.6598912,-79.3886251,17z/data=!3m1!4b1?hl=en
             #https://www.google.ca/maps/search/#{lat},+#{lng}/@#{lat},#{lng},17z/data=!3m1!4b1?hl=en
@@ -51,10 +51,19 @@ class ApisController < ApplicationController
   end
 
   def go
-    #joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/1425777628
-    #device_id#/api/:device_id/:state/:lat/:long/:time/
-    #:report { :device_id#/api/:device_id/:state/:lat/:long/:time/
-    response = HTTParty.get("http://joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/#{Time.now.to_i}")
+    #
+    # Test coordinates
+    # Mars building: 43.658010 -79.377507
+    # 
+    lat = ('43.658010'.to_f + 90) * 1000000
+    lng = ('-79.377507'.to_f + 180) * 1000000
+
+    #
+    # Calls:
+    # http://joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/1425777628
+    # /api/<:device_id>/<:state>/<:lat>/<:long>/<:time>/
+    #
+    response = HTTParty.get("http://joyride-hackathon.herokuapp.com/api/1/1/#{lat}/#{lng}/#{Time.now.to_i}")
 
     render text: 'good'
     return
