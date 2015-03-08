@@ -66,7 +66,7 @@ class ApisController < ApplicationController
     # http://joyride-hackathon.herokuapp.com/api/1/1/133659891/100641375/1425777628
     # /api/<:device_id>/<:state>/<:lat>/<:long>/<:time>/
     #
-    url = "http://joyride-hackathon.herokuapp.com/api/1/1/#{lat}/#{lng}/#{Time.now.to_i}"
+    url = "http://joyride-hackathon.herokuapp.com/api/1/2/#{lat}/#{lng}/#{Time.now.to_i}"
     response = HTTParty.get(url)
 
     render text: "url:  #{url} <br />response: #{response.body}"
