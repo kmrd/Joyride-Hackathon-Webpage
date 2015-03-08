@@ -59,7 +59,7 @@ class ApisController < ApplicationController
     lng = ('-79.377507'.to_f + 180) * 1000000.to_f
 
     lat = lat.to_i
-    lat = lnt.to_i
+    lng = lng.to_i
 
     #
     # Calls:
