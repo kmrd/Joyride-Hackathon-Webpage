@@ -188,6 +188,7 @@ DEPENDENCIES
   figaro
   fog (= 1.23.0)
   googl
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks

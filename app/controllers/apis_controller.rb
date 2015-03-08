@@ -72,7 +72,7 @@ class ApisController < ApplicationController
           lat = (lat_str.to_f / 1000000.to_f) - 90
           lng = (lng_str.to_f / 1000000.to_f) - 180
 
-          epoch = time
+          epoch = Time.now.to_i
 
           c = Coord.new(device: @device, state: state, lat: lat, lng: lng, epoch: epoch)
           c.save
